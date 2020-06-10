@@ -1,0 +1,393 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head>
+    <title>Home</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <script type="text/javascript" src="bt/js/jquery.js"></script>
+    <script type="text/javascript" src="bt/js/bootstrap.min.js"></script>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/df7fbd7c8b.js" crossorigin="anonymous"></script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link href="css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <!-- banner slider -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <link href="css/all.css" rel="stylesheet">
+    <!-- //Custom-Files -->
+
+<!--    &lt;!&ndash; Web-Fonts &ndash;&gt;-->
+<!--    <link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">-->
+<!--    <link href="http://fonts.googleapis.com/css?family=Oxygen:300,400,700&amp;subset=latin-ext" rel="stylesheet">-->
+<!--    &lt;!&ndash; //Web-Fonts &ndash;&gt;-->
+<!--    <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>-->
+<body>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="header d-md-flex justify-content-between align-items-center py-3 px-xl-5 px-lg-3 px-2">
+                <!-- logo -->
+                <div id="logo">
+                    <h1><a href="Home">Hotel</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_w3ls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop">
+                        <ul class="menu">
+                            <li><a href="/Gallery">图册</a></li>
+                            <li><a href="/Book">预定</a></li>
+                            <li><a href="#price" class="drop-text">房间</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- //nav -->
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <!-- banner -->
+    <div class="banner_w3lspvt">
+        <div class="csslider infinity" id="slider1">
+            <input type="radio" name="slides" checked="checked" id="slides_1">
+            <input type="radio" name="slides" id="slides_2">
+            <input type="radio" name="slides" id="slides_3">
+            <input type="radio" name="slides" id="slides_4">
+            <ul class="banner_slide_bg">
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt">
+                            <p>Welcome to our Hotel</p>
+                            <h3 class="w3ls_pvt-title text-wh text-uppercase let">Hotel &amp; Resort Villas</h3>
+<!--                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">Read More</a>-->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt">
+                            <p>Welcome to our Hotel</p>
+                            <h3 class="w3ls_pvt-title text-wh text-uppercase let">Enjoy Your Moments</h3>
+<!--                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">Read More</a>-->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt">
+                            <p>Welcome to our Hotel</p>
+                            <h3 class="w3ls_pvt-title text-wh text-uppercase let">Modern &amp; Spacious Rooms</h3>
+<!--                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">Read More</a>-->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt">
+                            <p>Welcome to our Hotel</p>
+                            <h3 class="w3ls_pvt-title text-wh text-uppercase let">In the Perfect Location</h3>
+<!--                            <a href="about.html" class="btn button-style mt-sm-5 mt-4">Read More</a>-->
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="arrows">
+                <label for="slides_1"></label>
+                <label for="slides_2"></label>
+                <label for="slides_3"></label>
+                <label for="slides_4"></label>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+</div>
+<!-- //main banner -->
+
+<!-- banner bottom -->
+<div class="banner-bottom py-5">
+    <div class="d-md-flex container py-xl-3 py-lg-3">
+        <div class="banner-left-bottom-w3ls">
+            <h6 class="text-wh let">酒店，让旅途不再劳累</h6>
+            <h3 class="text-wh my-3">Welcome to our Hotel</h3>
+            <p>放下行李，享受你的旅途吧！</p>
+        </div>
+    </div>
+</div>
+<!-- //banner bottom -->
+<!-- about -->
+<section class="about py-5" id="about">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">酒店介绍</h3>
+        <div class="row py-md-5">
+            <div class="col-lg-4 about-left-w3pvt offset-lg-1 mt-lg-4">
+                <div class="main-img">
+                    <img src="images/blog1.jpg" alt="" class="img-fluid pos-aboimg">
+                    <img src="images/blog2.jpg" alt="" class="img-fluid pos-aboimg2">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7 about-right offset-xl-1">
+                <h3 class="tittle-w3layouts text-uppercase pr-lg-5 mt-2">一次驻足，一生眷恋</h3>
+                <p class="mt-4 mb-4">酒店地处湖北武汉洪山区光谷商业街附近，交通便利，可乘坐地铁2号线于B出站口到达，娱乐购物应有尽有。酒店主楼14层，裙楼8层，内设大型停车场、露天游泳池等设施，共有车位100个。</p>
+                <p class="mt-4 mb-4">酒店客房拥有豪华总统套房及高级商务间等110间/套，每间客房布置都完善细致，设施齐全，WIFI全覆盖，均设有中央空调、冷、热饮设备，电子门匙系统。</p>
+                <p class="mt-4 mb-4">酒店餐厅共有餐位800个，其中高档别致的豪华包厢17间，极具人性化的设计风格，可迎合客人的不同需求和自由选择。宴会厅设施齐全、装修先进，可作为各种酒会、宴会和文艺演出等场地。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //about -->
+
+<!-- price -->
+<div class="rooms-w3ls bg-li py-5" id="price">
+    <div class="container-fluid py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">客房介绍</h3>
+        <p class="sub-tittle text-center mt-2 mb-sm-5 mb-4 pb-xl-3">酒店提供单人间、标间、大床房、商务间和豪华总统套房五种房型，旨在满足客人的不同需求。</p>
+        <div class="row">
+        <!--第一个房间-->
+            <div class="col-lg-4 price-mobamus">
+                <div class="price-top">
+                    <img src="images/roomImages/danrenjian.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="price-w3ls-bottom p-4">
+                    <h4 class="my-2"><a>单人间</a></h4>
+                    <div class="lm-item-price">
+                        <h6>
+                            <span class="price-top-head">￥</span>
+                            <span class="price-midd-head">159</span>
+                            <span class="price-right-head">/晚</span>
+                        </h6>
+                    </div>
+                    <ul class="style-lists">
+                        <li>有窗，不含早餐，全天热水供应</li>
+                        <li>单人床*1</li>
+                        <li>WIFI全覆盖，洗浴用品*1</li>
+                        <li>电视、吹风机、空调</li>
+                    </ul>
+                    <a href="book.html" class="btn button-style-2 mt-sm-5 mt-4">现在预订</a>
+                </div>
+            </div>
+<!--            第二个房间-->
+            <div class="col-lg-4 price-mobamus">
+                <div class="price-top">
+                    <img src="images/roomImages/shuangrenjian.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="price-w3ls-bottom p-4">
+                    <h4 class="my-2"><a>大床房</a></h4>
+                    <div class="lm-item-price">
+                        <h6>
+                            <span class="price-top-head">￥</span>
+                            <span class="price-midd-head">296</span>
+                            <span class="price-right-head">/晚</span>
+                        </h6>
+                    </div>
+                    <ul class="style-lists">
+                        <li>有窗，不含早餐，全天热水供应</li>
+                        <li>双人床*1</li>
+                        <li>WIFI全覆盖，洗浴用品*2</li>
+                        <li>电视、吹风机、空调</li>
+                    </ul>
+                    <a href="book.html" class="btn button-style-2 mt-sm-5 mt-4">现在预订</a>
+                </div>
+            </div>
+<!--            第三个房间-->
+            <div class="col-lg-4 price-mobamus">
+                <div class="price-top">
+                    <img src="images/roomImages/biaojian.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="price-w3ls-bottom p-4">
+                    <h4 class="my-2"><a>标准间</a></h4>
+                    <div class="lm-item-price">
+                        <h6>
+                            <span class="price-top-head">￥</span>
+                            <span class="price-midd-head">195</span>
+                            <span class="price-right-head">/晚</span>
+                        </h6>
+                    </div>
+                    <ul class="style-lists">
+                        <li>有窗，不含早餐，全天热水供应</li>
+                        <li>单人床*2</li>
+                        <li>WIFI全覆盖，洗浴用品*2</li>
+                        <li>电视、吹风机、空调</li>
+                    </ul>
+                    <a href="book.html" class="btn button-style-2 mt-sm-5 mt-4">现在预订</a>
+                </div>
+            </div>
+<!--            第四个房间-->
+            <div class="col-lg-4 price-mobamus">
+                <div class="price-top">
+                    <img src="images/roomImages/shangwujian.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="price-w3ls-bottom p-4">
+                    <h4 class="my-2"><a>商务间</a></h4>
+                    <div class="lm-item-price">
+                        <h6>
+                            <span class="price-top-head">￥</span>
+                            <span class="price-midd-head">388</span>
+                            <span class="price-right-head">/晚</span>
+                        </h6>
+                    </div>
+                    <ul class="style-lists">
+                        <li>有窗，含早餐，全天热水供应</li>
+                        <li>双人床*1</li>
+                        <li>WIFI全覆盖，洗浴用品*2</li>
+                        <li>电视、吹风机、空调</li>
+                        <li>超大办公桌</li>
+                        <li>免费露天泳池</li>
+                    </ul>
+                    <a href="/Book" class="btn button-style-2 mt-sm-5 mt-4">现在预订</a>
+                </div>
+            </div>
+<!--            第五个房间-->
+            <div class="col-lg-4 price-mobamus">
+                <div class="price-top">
+                    <img src="images/roomImages/zongtongfang.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="price-w3ls-bottom p-4">
+                    <h4 class="my-2"><a>总统套间</a></h4>
+                    <div class="lm-item-price">
+                        <h6>
+                            <span class="price-top-head">￥</span>
+                            <span class="price-midd-head">679</span>
+                            <span class="price-right-head">/天</span>
+                        </h6>
+                    </div>
+                    <ul class="style-lists">
+                        <li>有窗，含早餐，全天热水供应</li>
+                        <li>双人床*1</li>
+                        <li>WIFI全覆盖，洗浴用品*2</li>
+                        <li>卧室电视、吹风机、空调</li>
+                        <li>超大客厅，沙发及客厅电视、中央空调</li>
+                        <li>免费露天泳池 &amp; 餐厅豪华包厢</li>
+                    </ul>
+                    <a href="/Book" class="btn button-style-2 mt-sm-5 mt-4">现在预订</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //price -->
+
+<!-- why -->
+<div class="serives py-5" id="why">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">选择我们的原因</h3>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 ser-grid">
+                <span class="fa fa-cutlery"></span>
+                <h4>餐厅</h4>
+                <p>具有800个餐位及17个豪华包厢，菜式丰富多样，早餐供应时间7-10点，满足客人的不同需求，能够照顾到晚起客人</p>
+            </div>
+            <div class="col-lg-3 col-md-6 ser-grid mt-md-0 mt-5">
+                <span class="far fa-money-bill-alt"></span>
+                <h4>价格更低</h4>
+                <p>致力于更用心、更贴心，同星级下更实惠，让更多的人享受到五星级般的服务</p>
+            </div>
+            <div class="col-lg-3 col-md-6 ser-grid mt-lg-0 mt-5">
+                <span class="fa fa-user-secret">
+                </span>
+                <h4>注重个人空间</h4>
+                <p>房间安全设施完备，酒店定期会对各个房间安全隐患进行排查，让您住的舒心</p>
+            </div>
+            <div class="col-lg-3 col-md-6 ser-grid mt-lg-0 mt-5">
+                <span class="fa fa-car"></span>
+                <h4>免费停车位</h4>
+                <p>酒店拥有超大停车场，免费提供800个车位，住宿期间免费停车，让您没有停车烦恼</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- why -->
+
+<!-- services -->
+<div class="serives-mobamu py-5" id="services">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-wh font-weight-bold">我们提供的服务</h3>
+        <p class="sub-tittle text-center text-li mt-2 mb-sm-5 mb-4 pb-xl-3">酒店提供更细心的服务，让您有一个愉快的旅途</p>
+        <div class="row welcome-bottom text-center">
+            <div class="col-lg-3 col-sm-6 px-2">
+                <div class="welcome-grid bg-wh py-5 px-4">
+                    <img src="images/wh1.jpg" alt="" class="img-fluid">
+                    <h4 class="mt-4 mb-3 text-bl"></h4>
+                    <p>免费叫早，避免错过重要的事情</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5 px-2">
+                <div class="welcome-grid bg-wh py-5 px-4">
+                    <img src="images/wh2.jpg" alt="" class="img-fluid">
+                    <h4 class="mt-4 mb-3 text-bl"></h4>
+                    <p>免费清理房间，干洗衣物</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5 px-2">
+                <div class="welcome-grid bg-wh py-5 px-4">
+                    <img src="images/wh3.jpg" alt="" class="img-fluid">
+                    <h4 class="mt-4 mb-3 text-bl"></h4>
+                    <p>细心的前台客服，为您提供帮助</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5 px-2">
+                <div class="welcome-grid bg-wh py-5 px-4">
+                    <img src="images/wh4.jpg" alt="" class="img-fluid">
+                    <h4 class="mt-4 mb-3 text-bl"></h4>
+                    <p>旅行册、地图等旅行必备</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //services -->
+
+<!-- footer -->
+<footer class="py-5">
+    <div class="container pt-xl-4">
+        <div class="row footer-top">
+            <div class="col-lg-3 col-md-6 footer-grid_section_1its mt-lg-0 mt-4">
+                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">联系方式</h3>
+                <div class="contact-info">
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">订房电话</h4>
+                        <p>027-098 8907 9987</p>
+                    </div>
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">电子邮件</h4>
+                        <p><a href="mailto:info@example.com">info@example.com</a></p>
+                    </div>
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">地址</h4>
+                        <p>湖北省武汉市洪山区</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- //footer -->
+
+<!-- move top icon -->
+<a href="#home" class="move-top text-center"></a>
+<!-- //move top icon -->
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+    <div class="xl-chrome-ext-bar__logo"></div>
+
+<!--    <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>-->
+    <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+</div></body></html>

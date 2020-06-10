@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cug.se.leitast.comproj.Dao.CustomerDao">
+
+    <!--    id必须和Dao层相同-->
+    <select id="verify_password" resultType="java.lang.String" parameterType="cug.se.leitast.comproj.Entity.CustomerEntity">
+
+      SELECT password FROM `testuser`.`Customer` where username = #{username};
+
+    </select>
+
+    <select id="verify_username" resultType="java.lang.String" parameterType="java.util.Map">
+
+      SELECT username FROM `testuser`.`Customer`;
+
+    </select>
+
+    <select id="login" resultType="java.lang.String" parameterType="java.lang.String">
+
+        SELECT fullname FROM `testuser`.`Customer` where username = #{username} and password=#{password};
+
+    </select>
+
+    <insert id="register" parameterType="cug.se.leitast.comproj.Entity.CustomerEntity">
+
+        INSERT INTO `testuser`.`Customer` ( `username`, `password`, `fullname`, `phone` )
+        VALUES
+	    ( #{username}, #{password},#{fullname}, #{phone});
+
+    </insert>
+
+    <update id="forget" parameterType="cug.se.leitast.comproj.Entity.CustomerEntity">
+        UPDATE `testuser`.`Customer`
+        SET
+            `password` =  #{password}
+        WHERE
+            (`username` = #{username});
+
+
+
+    </update>
+</mapper>

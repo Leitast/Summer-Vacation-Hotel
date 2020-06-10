@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zxx"><head>
+    <title>Booking Form</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <script src="../../layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="bt/js/jquery.js"></script>
+    <script type="text/javascript" src="bt/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/df7fbd7c8b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <link href="css/all.css" rel="stylesheet">
+    <!-- //Custom-Files -->
+</head>
+<body>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="header d-md-flex justify-content-between align-items-center py-3 px-xl-5 px-lg-3 px-2">
+                <!-- logo -->
+                <div id="logo">
+                    <h1><a href="Home">Hotel</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_w3ls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop">
+                        <ul class="menu">
+                            <li><a href="Home">主页</a></li>
+                            <!--                            <li><a href="about.html">关于我们</a></li>-->
+                            <li><a href="Gallery">图册</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- //nav -->
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <!-- banner -->
+    <div class="banner_w3lspvt-2">
+
+    </div>
+    <!-- //banner -->
+</div>
+<!-- //main banner -->
+
+<!-- page details -->
+<div class="breadcrumb-mobamu">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="Home">主页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">填写订单</li>
+    </ol>
+</div>
+<!-- //page details -->
+
+<!-- booking form -->
+<div class="register-w3 py-5">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center text-bl font-weight-bold">填写订单</h3>
+        <div class="comment-top mt-5">
+            <div class="comment-bottom mobamuinfo_mail_grid_right">
+                    <div id="order">
+                        <div class="row">
+                            <div class="col-lg-6 form-group date-plu">
+                                <label>入住日期</label>
+                                <input id="checkindate" type="date" name="checkindate" required="">
+                            </div>
+                            <div class="col-lg-6 form-group date-plu">
+                                <label>离店日期</label>
+                                <input id="checkoutdate" type="date" name="checkoutdate" required="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>选择您的房间</label>
+                                <select required="" id="roomtype" name="roomtype" class="form-control">
+                                    <option value="单人间">单人间</option>
+                                    <option value="标间">标间</option>
+                                    <option value="大床房">大床房</option>
+                                    <option value="商务间">商务间</option>
+                                    <option value="总统套间">总统套间</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>手机号码</label>
+                                <input id="phonenum" class="form-control" type="text" name="phonenum" placeholder="手机号码" required="">
+                            </div>
+                        </div>
+                        <div class="row" id="people">
+<!--                            <div>-->
+<!--                                <div onclick="addPeople()" class="btn button-style mx-sm-3 my-lg-4">添加</div>-->
+<!--                            </div>-->
+                            <div class="col-lg-4 form-group">
+                                <label>姓名</label>
+                                <input id="passengername1" class="form-control" type="text" name="passengername1" placeholder="姓名" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>身份证号</label>
+                                <input id="passengerid1" class="form-control" type="text" name="passengerid1" placeholder="身份证号" required="">
+                            </div>
+                            
+<!--                            <div id="hidden3" style="display:none">-->
+<!--                                <div onclick="deletePeople()" class="btn button-style mx-sm-3 my-lg-4">删除</div>-->
+<!--                            </div>-->
+<!--                                     	-->
+<!--                            <div id="hidden1"  class="col-lg-4 form-group" style="display:none">-->
+<!--                                <label>姓名</label>-->
+<!--                                <input id="passengername2" class="form-control" type="text" name="passengername2" placeholder="姓名" defaultValue=null >-->
+<!--                            </div>-->
+<!--                            <div id="hidden2" class="col-lg-6 form-group" style="display:none">-->
+<!--                                <label>身份证号</label>-->
+<!--                                <input id="passengerid2" class="form-control" type="text" name="passengerid2" placeholder="身份证号" defaultValue=null >-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>订单备注</label>
+                        <textarea id="message" class="form-control" name="Message" placeholder="如有特殊需要，请留言..." required=""></textarea>
+                    </div>
+                    <button id="reverse" class="btn submit mt-3">预订</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //booking form -->
+
+<!-- footer -->
+<footer class="py-5">
+    <div class="container pt-xl-4">
+        <div class="row footer-top">
+            <div class="col-lg-3 col-md-6 footer-grid_section_1its mt-lg-0 mt-4">
+                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">联系方式</h3>
+                <div class="contact-info">
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">订房电话</h4>
+                        <p>027-098 8907 9987</p>
+                    </div>
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">电子邮件</h4>
+                        <p><a href="mailto:info@example.com">info@example.com</a></p>
+                    </div>
+                    <div class="footer-style-w3ls mb-4">
+                        <h4 class="text-li mb-2">地址</h4>
+                        <p>湖北省武汉市洪山区</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- //footer -->
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript">
+
+    $("#reverse").click(function () {
+        var OrderNum = _getRandomString(16);
+        var Contact_Name = $("#passengername1").val();
+        var Card = $("#passengerid1").val();
+        var EnterTime = $("#checkindate").val();
+        var LeaveTime = $("#checkoutdate").val();
+        var RoomType = $("#roomtype").val();
+        var Phone = $("#phonenum").val();
+        var Requirement = $("#message").val();
+        if(EnterTime==null){
+            return layer.msg('请选择入住日期');
+        }
+
+        if(LeaveTime==null){
+            return layer.msg('请选择离店日期');
+        }
+
+        if(RoomType==null){
+            return layer.msg('请选择房间类型');
+        }
+
+        if(Contact_Name==null){
+            return layer.msg('请输入用户姓名');
+        }
+
+        if(Card==null){
+            return layer.msg('请输入身份证号');
+        }
+
+        if(Phone==null){
+            return layer.msg('请输入手机号');
+        }
+
+        if(Requirement==null){
+            return layer.msg('请输入身份证号');
+        }
+
+        console.log(Card)
+        console.log(Phone)
+
+
+
+        insert_data(OrderNum, Contact_Name,Card ,EnterTime,LeaveTime,RoomType,Phone,Requirement);
+    })
+
+    //随机订单号
+    function _getRandomString(len) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+        var maxPos = $chars.length;
+        var pwd = '';
+        for (i = 0; i < len; i++) {
+            pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return pwd;
+    }
+
+    function insert_data(OrderNum, Contact_Name,Card ,EnterTime,LeaveTime,RoomType,Phone,Requirement){
+        var order = {
+            "OrderNum": OrderNum,
+            "Contact_Name": Contact_Name,
+            "Card":Card,
+            "EnterTime":EnterTime,
+            "LeaveTime":LeaveTime,
+            "RoomType":RoomType,
+            "Phone":Phone,
+            "Requirement":Requirement
+        }
+
+        var orderJson = JSON.stringify(order)
+
+        console.log(orderJson)
+
+        $.post({
+            url:'/Reverse',
+            data: orderJson,
+            contentType:'application/json',
+            success:function (data) {
+                layer.msg('预定成功！');
+                setTimeout('delay_to_login()',300)
+            }
+        })
+    }
+
+    function delay_to_login(){
+        window.location.href="/Home"
+    }
+
+    // var order_number = 1;
+    // function addPeople() {
+    //     var selectRoom = document.getElementById("roomType");
+    //     var index = selectRoom.selectedIndex;
+    //     if(selectRoom[index].value == 0){
+    //         alert("一间单人间最多只能住1人");
+    //     }
+    //     else if (order_number == 1){
+    //         var div = document.createElement('div');
+    //         div.className = 'row';
+    //         div.id = "people" + order_number;
+    //         var div1 = document.createElement('div');
+    //         div1.className = 'col-lg-4 form-group';
+    //         var nameID = "name" + order_number;
+    //         var cardID = "ID" + order_number;
+    //         div1.innerHTML = '                            <label>姓名</label>\n' +
+    //             '                            <input id='+nameID+' class="form-control" type="text" name="Name" placeholder="姓名" required="">';
+    //         var div2 = document.createElement('div');
+    //         div2.className = 'col-lg-6 form-group';
+    //         div2.innerHTML = '                            <label>身份证号</label>\n' +
+    //             '                            <input id='+cardID+' class="form-control" type="text" name="number" placeholder="身份证号" required="">';
+    //         var div3 = document.createElement('div');
+    //         div.innerHTML = '<div onclick="deletePeople('+order_number+')" class="btn button-style mx-sm-3 my-lg-4">删除</div>';
+    //         div.appendChild(div1);
+    //         div.appendChild(div2);
+    //         div.appendChild(div3);
+    //         document.getElementById("order").appendChild(div);
+    //         order_number = order_number + 1;
+    //     }
+    //     else{
+    //         alert("一间房间最多只能住两人");
+    //     }
+    // }
+    // function deletePeople(id_number) {
+    //     var id = "people" + id_number;
+    //     var div = document.getElementById(id);
+    //     document.getElementById("order").removeChild(div);
+    // }
+</script>
+
+<!-- move top icon -->
+<a href="#home" class="move-top text-center"></a>
+<!-- //move top icon -->
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+    <div class="xl-chrome-ext-bar__logo"></div>
+    <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+</div></body></html>

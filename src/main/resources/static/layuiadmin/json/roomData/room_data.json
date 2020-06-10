@@ -1,0 +1,33 @@
+{
+  "code": 0
+,"msg": ""
+,"count": "3"
+,"data": [{
+  "room_id": "1001"
+,"room_type": "单人间"
+,"room_floor": 1
+,"room_status": "空闲"
+,"room_window": "有"
+,"room_occupancy": "1"
+,"price": "159"
+,"room_is_clean":"是"
+},{
+  "room_id": "1002"
+,"room_type": "标准间"
+,"room_floor": 1
+,"room_status": "空闲"
+,"room_window": "有"
+,"room_occupancy": "2"
+,"price": "199"
+,"room_is_clean":"是"
+},{
+  "room_id": "1003"
+,"room_type": "双人间"
+,"room_floor": 1
+,"room_status": "空闲"
+,"room_window": "有"
+,"room_occupancy": "2"
+,"price": "259"
+,"room_is_clean":"是"
+}]
+}
