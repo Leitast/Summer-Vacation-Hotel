@@ -5,9 +5,10 @@
 
     <insert id="insert_info" parameterType="cug.se.leitast.comproj.Entity.OrderEntity">
 
-        INSERT INTO `testuser`.`Order` ( `OrderNum`, `Contact_Name`, `Card`, `EnterTime`, `LeaveTime`, `RoomType`, `Phone`, `Requirement` )
+        INSERT INTO `testuser`.`Order` ( `ordernum`, `contact_name`, `card`, `entertime`, `leavetime`, `roomtype`, `phone`, `requirement` )
         VALUES
-	    (#{OrderNum},#{Contact_Name},#{Card},#{EnterTime},#{LeaveTime},#{RoomType},#{Phone},#{Requirement});
+	    ( #{ordernum},#{contact_name},#{card},#{entertime},#{leavetime},#{roomtype},#{phone},#{requirement});
+
 
     </insert>
 

@@ -25,7 +25,7 @@ public class OrderController {
     }
 
     //预定函数
-    @RequestMapping("/Reverse")
+    @RequestMapping("/BookPage")
     public String insert_info(@RequestBody OrderEntity orderentity){
         orderservice.insert_info(orderentity);
         return "redirect:/";

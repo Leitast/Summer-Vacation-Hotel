@@ -16,7 +16,6 @@
             window.scrollTo(0, 1);
         }
     </script>
-    <script src="../../layuiadmin/layui/layui.js"></script>
     <script type="text/javascript" src="bt/js/jquery.js"></script>
     <script type="text/javascript" src="bt/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/df7fbd7c8b.js" crossorigin="anonymous"></script>
@@ -27,7 +26,9 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <!-- Font-Awesome-Icons-CSS -->
     <link href="css/all.css" rel="stylesheet">
-    <!-- //Custom-Files -->
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/login.css" media="all">
 </head>
 <body>
 <!-- main banner -->
@@ -176,51 +177,84 @@
 <!-- //footer -->
 
 <script src="../../layuiadmin/layui/layui.js"></script>
-<script type="text/javascript">
+<script>
+
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'user'], function() {
+        var $ = layui.$
+            , setter = layui.setter
+            , admin = layui.admin
+            , form = layui.form
+            , router = layui.router();
+    });
 
     $("#reverse").click(function () {
-        var OrderNum = _getRandomString(16);
-        var Contact_Name = $("#passengername1").val();
-        var Card = $("#passengerid1").val();
-        var EnterTime = $("#checkindate").val();
-        var LeaveTime = $("#checkoutdate").val();
-        var RoomType = $("#roomtype").val();
-        var Phone = $("#phonenum").val();
-        var Requirement = $("#message").val();
-        if(EnterTime==null){
-            return layer.msg('请选择入住日期');
+        var ordernum = _getRandomString(16);
+        var contact_name = $("#passengername1").val();
+        var card = $("#passengerid1").val();
+        var entertime = $("#checkindate").val();
+        var leavetime = $("#checkoutdate").val();
+        var roomtype = $("#roomtype").val();
+        var phone = $("#phonenum").val();
+        var requirement = $("#message").val();
+        // if(EnterTime==null){
+        //     return layer.msg('请选择入住日期');
+        // }
+        //
+        // if(LeaveTime==null){
+        //     return layer.msg('请选择离店日期');
+        // }
+        //
+        // if(RoomType==null){
+        //     return layer.msg('请选择房间类型');
+        // }
+        //
+        // if(Contact_Name==null){
+        //     return layer.msg('请输入用户姓名');
+        // }
+        //
+        // if(Card==null){
+        //     return layer.msg('请输入身份证号');
+        // }
+        //
+        // if(Phone==null){
+        //     return layer.msg('请输入手机号');
+        // }
+        //
+        // if(Requirement==null){
+        //     return layer.msg('请输入身份证号');
+        // }
+
+        console.log(card)
+        console.log(phone)
+
+        var order = {
+            "ordernum": ordernum,
+            "contact_name": contact_name,
+            "card":card,
+            "entertime":entertime,
+            "leavetime":leavetime,
+            "roomtype":roomtype,
+            "phone":phone,
+            "requirement":requirement
         }
 
-        if(LeaveTime==null){
-            return layer.msg('请选择离店日期');
-        }
+        var orderJson = JSON.stringify(order)
 
-        if(RoomType==null){
-            return layer.msg('请选择房间类型');
-        }
+        console.log(orderJson)
 
-        if(Contact_Name==null){
-            return layer.msg('请输入用户姓名');
-        }
-
-        if(Card==null){
-            return layer.msg('请输入身份证号');
-        }
-
-        if(Phone==null){
-            return layer.msg('请输入手机号');
-        }
-
-        if(Requirement==null){
-            return layer.msg('请输入身份证号');
-        }
-
-        console.log(Card)
-        console.log(Phone)
-
-
-
-        insert_data(OrderNum, Contact_Name,Card ,EnterTime,LeaveTime,RoomType,Phone,Requirement);
+        $.post({
+            url:'/BookPage',
+            data: orderJson,
+            contentType:'application/json',
+            success:function (data) {
+                layer.msg('预定成功！');
+                setTimeout('delay_to_login()',300)
+            }
+        })
     })
 
     //随机订单号
@@ -235,75 +269,9 @@
         return pwd;
     }
 
-    function insert_data(OrderNum, Contact_Name,Card ,EnterTime,LeaveTime,RoomType,Phone,Requirement){
-        var order = {
-            "OrderNum": OrderNum,
-            "Contact_Name": Contact_Name,
-            "Card":Card,
-            "EnterTime":EnterTime,
-            "LeaveTime":LeaveTime,
-            "RoomType":RoomType,
-            "Phone":Phone,
-            "Requirement":Requirement
-        }
-
-        var orderJson = JSON.stringify(order)
-
-        console.log(orderJson)
-
-        $.post({
-            url:'/Reverse',
-            data: orderJson,
-            contentType:'application/json',
-            success:function (data) {
-                layer.msg('预定成功！');
-                setTimeout('delay_to_login()',300)
-            }
-        })
-    }
-
     function delay_to_login(){
         window.location.href="/Home"
     }
-
-    // var order_number = 1;
-    // function addPeople() {
-    //     var selectRoom = document.getElementById("roomType");
-    //     var index = selectRoom.selectedIndex;
-    //     if(selectRoom[index].value == 0){
-    //         alert("一间单人间最多只能住1人");
-    //     }
-    //     else if (order_number == 1){
-    //         var div = document.createElement('div');
-    //         div.className = 'row';
-    //         div.id = "people" + order_number;
-    //         var div1 = document.createElement('div');
-    //         div1.className = 'col-lg-4 form-group';
-    //         var nameID = "name" + order_number;
-    //         var cardID = "ID" + order_number;
-    //         div1.innerHTML = '                            <label>姓名</label>\n' +
-    //             '                            <input id='+nameID+' class="form-control" type="text" name="Name" placeholder="姓名" required="">';
-    //         var div2 = document.createElement('div');
-    //         div2.className = 'col-lg-6 form-group';
-    //         div2.innerHTML = '                            <label>身份证号</label>\n' +
-    //             '                            <input id='+cardID+' class="form-control" type="text" name="number" placeholder="身份证号" required="">';
-    //         var div3 = document.createElement('div');
-    //         div.innerHTML = '<div onclick="deletePeople('+order_number+')" class="btn button-style mx-sm-3 my-lg-4">删除</div>';
-    //         div.appendChild(div1);
-    //         div.appendChild(div2);
-    //         div.appendChild(div3);
-    //         document.getElementById("order").appendChild(div);
-    //         order_number = order_number + 1;
-    //     }
-    //     else{
-    //         alert("一间房间最多只能住两人");
-    //     }
-    // }
-    // function deletePeople(id_number) {
-    //     var id = "people" + id_number;
-    //     var div = document.getElementById(id);
-    //     document.getElementById("order").removeChild(div);
-    // }
 </script>
 
 <!-- move top icon -->

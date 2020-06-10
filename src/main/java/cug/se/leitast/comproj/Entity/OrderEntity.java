@@ -1,106 +1,104 @@
 package cug.se.leitast.comproj.Entity;
 
-import java.util.Date;
-
 public class OrderEntity {
-    private String OrderNum;
-    private String Contact_Name;
-    private String Card;
-    private String EnterTime;
-    private String LeaveTime;
-    private String RoomType;
-    private String Phone;
-    private String Requirement;
+    private String ordernum;
+    private String contact_name;
+    private String card;
+    private String entertime;
+    private String leavetime;
+    private String roomtype;
+    private String phone;
+    private String requirement;
 
     public OrderEntity() {
     }
 
-    public OrderEntity(String OrderNum, String Contact_Name, String Card, String EnterTime, String LeaveTime, String RoomType, String Phone, String Requirement) {
-        this.OrderNum = OrderNum;
-        this.Contact_Name = Contact_Name;
-        this.Card = Card;
-        this.EnterTime = EnterTime;
-        this.LeaveTime = LeaveTime;
-        this.RoomType = RoomType;
-        this.Phone = Phone;
-        this.Requirement = Requirement;
+    public OrderEntity(String ordernum, String contact_name, String card, String entertime, String leavetime, String roomtype, String phone, String requirement) {
+        this.ordernum = ordernum;
+        this.contact_name = contact_name;
+        this.card = card;
+        this.entertime = entertime;
+        this.leavetime = leavetime;
+        this.roomtype = roomtype;
+        this.phone = phone;
+        this.requirement = requirement;
     }
 
-    public String getOrderNum() {
-        return OrderNum;
+    public String getOrdernum() {
+        return ordernum;
     }
 
-    public void setOrderNum(String OrderNum) {
-        OrderNum = OrderNum;
+    public void setOrdernum(String ordernum) {
+        this.ordernum = ordernum;
     }
 
-    public String getContact_Name() {
-        return Contact_Name;
+    public String getContact_name() {
+        return contact_name;
     }
 
-    public void setContact_Name(String Contact_Name) {
-        Contact_Name = Contact_Name;
+    public void setContact_name(String contact_name) {
+        this.contact_name = contact_name;
     }
 
     public String getCard() {
-        return Card;
+        return card;
     }
 
-    public void setCard(String Card) {
-        Card = Card;
+    public void setCard(String card) {
+        this.card = card;
     }
 
-    public String getEnterTime() {
-        return EnterTime;
+    public String getEntertime() {
+        return entertime;
     }
 
-    public void setEnterTime(String EnterTime) {
-        EnterTime = EnterTime;
+    public void setEntertime(String entertime) {
+        this.entertime = entertime;
     }
 
-    public String getLeaveTime() {
-        return LeaveTime;
+    public String getLeavetime() {
+        return leavetime;
     }
 
-    public void setLeaveTime(String LeaveTime) {
-        LeaveTime = LeaveTime;
+    public void setLeavetime(String leavetime) {
+        this.leavetime = leavetime;
     }
 
-    public String getRoomType() {
-        return RoomType;
+    public String getRoomtype() {
+        return roomtype;
     }
 
-    public void setRoomType(String RoomType) {
-        RoomType = RoomType;
+    public void setRoomtype(String roomtype) {
+        this.roomtype = roomtype;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
-    public void setPhone(String Phone) {
-        Phone = Phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getRequirement() {
-        return Requirement;
+        return requirement;
     }
 
-    public void setRequirement(String Requirement) {
-        Requirement = Requirement;
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 
     @Override
     public String toString() {
         return "OrderEntity{" +
-                "OrderNum='" + OrderNum + '\'' +
-                ", Contact_Name='" + Contact_Name + '\'' +
-                ", Card='" + Card + '\'' +
-                ", EnterTime='" + EnterTime + '\'' +
-                ", LeaveTime='" + LeaveTime + '\'' +
-                ", RoomType='" + RoomType + '\'' +
-                ", Phone='" + Phone + '\'' +
-                ", Requirement='" + Requirement + '\'' +
+                "ordernum='" + ordernum + '\'' +
+                ", contact_name='" + contact_name + '\'' +
+                ", card='" + card + '\'' +
+                ", entertime='" + entertime + '\'' +
+                ", leavetime='" + leavetime + '\'' +
+                ", roomtype='" + roomtype + '\'' +
+                ", phone='" + phone + '\'' +
+                ", requirement='" + requirement + '\'' +
                 '}';
     }
 }
