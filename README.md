@@ -15,6 +15,6 @@ Project launch:
     
 Discussion:
 
-	This project mainly provides the implementation of add, delete, modify and query functions, such as basic login, registration, etc. 
+	This project mainly provides the implementation of add, delete, update and select functions, such as basic login, registration, etc. 
 	There may be some irregularities in the code, which will be effectively modified later. 
     
