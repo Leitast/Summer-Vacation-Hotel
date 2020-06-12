@@ -124,7 +124,7 @@
                                 <label>身份证号</label>
                                 <input id="passengerid1" class="form-control" type="text" name="passengerid1" placeholder="身份证号" required="">
                             </div>
-                            
+
 <!--                            <div id="hidden3" style="display:none">-->
 <!--                                <div onclick="deletePeople()" class="btn button-style mx-sm-3 my-lg-4">删除</div>-->
 <!--                            </div>-->
@@ -143,7 +143,7 @@
                         <label>订单备注</label>
                         <textarea id="message" class="form-control" name="Message" placeholder="如有特殊需要，请留言..." required=""></textarea>
                     </div>
-                    <button id="reverse" class="btn submit mt-3">预订</button>
+                    <button id="reverse" class="btn submit mt-3" lay-submit lay-filter="LAY-user-book-submit">>预订</button>
             </div>
         </div>
     </div>
@@ -151,20 +151,33 @@
 <!-- //booking form -->
 
 <!-- footer -->
+<!-- footer -->
 <footer class="py-5">
     <div class="container pt-xl-4">
         <div class="row footer-top">
             <div class="col-lg-3 col-md-6 footer-grid_section_1its mt-lg-0 mt-4">
-                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">联系方式</h3>
+                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3"></h3>
                 <div class="contact-info">
                     <div class="footer-style-w3ls mb-4">
                         <h4 class="text-li mb-2">订房电话</h4>
                         <p>027-098 8907 9987</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-grid_section_1its mt-lg-0 mt-4">
+                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3"></h3>
+                <div class="contact-info">
                     <div class="footer-style-w3ls mb-4">
                         <h4 class="text-li mb-2">电子邮件</h4>
                         <p><a href="mailto:info@example.com">info@example.com</a></p>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-grid_section_1its mt-lg-0 mt-4">
+                <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3"></h3>
+                <div class="contact-info">
                     <div class="footer-style-w3ls mb-4">
                         <h4 class="text-li mb-2">地址</h4>
                         <p>湖北省武汉市洪山区</p>
@@ -189,9 +202,48 @@
             , admin = layui.admin
             , form = layui.form
             , router = layui.router();
+
+        form.render();
+        //提交
+        form.on('submit(LAY-user-book-submit)', function(obj){
+            var field = obj.field;
+            var checkindate = $("#checkindate").val();
+            var chechoutdate = $("#checkoutdate").val();
+            var roomtype = $("#roomtype").val();
+            var phonenum = $("#phonenum").val();
+            var pass_name = $("#passengername1").val();
+            var pass_id = $("#passengerid1").val();
+            //是否选择了入住日期
+            if(checkindate == ''){
+                return layer.msg('请选择入住时间');
+            }
+            //是否选择了离店日期
+            if(chechoutdate == ''){
+                return layer.msg('请选择离店时间');
+            }
+            //是否填写了手机号码
+            if(phonenum == ''){
+                return layer.msg('请填写手机号');
+            }
+            //是否选择了房间类型
+            if(roomtype == ''){
+                return layer.msg('请选择房间类型');
+            }
+            //是否填写了入住人信息
+            if(pass_name == ''){
+                return layer.msg('请填写预订人姓名');
+            }
+            if(pass_id == ''){
+                return layer.msg('请填写预订人身份证号码');
+            }
+
+            book();
+
+        });
+
     });
 
-    $("#reverse").click(function () {
+    function book(){
         var ordernum = _getRandomString(16);
         var contact_name = $("#passengername1").val();
         var card = $("#passengerid1").val();
@@ -200,36 +252,9 @@
         var roomtype = $("#roomtype").val();
         var phone = $("#phonenum").val();
         var requirement = $("#message").val();
-        // if(EnterTime==null){
-        //     return layer.msg('请选择入住日期');
-        // }
-        //
-        // if(LeaveTime==null){
-        //     return layer.msg('请选择离店日期');
-        // }
-        //
-        // if(RoomType==null){
-        //     return layer.msg('请选择房间类型');
-        // }
-        //
-        // if(Contact_Name==null){
-        //     return layer.msg('请输入用户姓名');
-        // }
-        //
-        // if(Card==null){
-        //     return layer.msg('请输入身份证号');
-        // }
-        //
-        // if(Phone==null){
-        //     return layer.msg('请输入手机号');
-        // }
-        //
-        // if(Requirement==null){
-        //     return layer.msg('请输入身份证号');
-        // }
-
-        console.log(card)
-        console.log(phone)
+        if(requirement == ''){
+            requirement = '无';
+        }
 
         var order = {
             "ordernum": ordernum,
@@ -244,8 +269,6 @@
 
         var orderJson = JSON.stringify(order)
 
-        console.log(orderJson)
-
         $.post({
             url:'/BookPage',
             data: orderJson,
@@ -255,7 +278,8 @@
                 setTimeout('delay_to_login()',300)
             }
         })
-    })
+    }
+
 
     //随机订单号
     function _getRandomString(len) {

@@ -1,6 +1,7 @@
 package cug.se.leitast.comproj.Service;
 
 import cug.se.leitast.comproj.Dao.CustomerDao;
+import cug.se.leitast.comproj.Entity.BackCustomerEntity;
 import cug.se.leitast.comproj.Entity.CustomerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,15 @@ public class CustomerServiceImp implements CustomerService{
     @Override
     public void forget(CustomerEntity customerentity) {
         customerdao.forget(customerentity);
+    }
+
+    @Override
+    public List<BackCustomerEntity> searchall() {
+        return customerdao.searchall();
+    }
+
+    @Override
+    public List<BackCustomerEntity> search(String username) {
+        return customerdao.search(username);
     }
 }

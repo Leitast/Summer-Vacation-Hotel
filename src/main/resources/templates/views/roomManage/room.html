@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>客房管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script type="text/javascript" src="../../bt/js/jquery.js"></script>
+    <script type="text/javascript" src="../../bt/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+<!--            查询按钮-->
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">房间号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="roomid" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">房间楼层</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="roomfloor" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">房间状态</label>
+                    <div class="layui-input-inline">
+                        <select name="room_status" >
+                            <option value="">请输入</option>
+                            <option value="空闲">空闲</option>
+                            <option value="已预订">已预订</option>
+                            <option value="入住中">入住中</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">房间类型</label>
+                    <div class="layui-input-inline">
+                        <select name="room_type" >
+                            <option value="">请输入</option>
+                            <option value="单人间">单人间</option>
+                            <option value="标间">标间</option>
+                            <option value="大床房">大床房</option>
+                            <option value="商务间">商务间</option>
+                            <option value="总统套房">总统套房</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否有窗</label>
+                    <div class="layui-input-inline">
+                        <select name="room_window" >
+                            <option value="">请输入</option>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否打扫</label>
+                    <div class="layui-input-inline">
+                        <select name="room_is_clean">
+                            <option value="">请输入</option>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+        <div class="layui-card-body">
+<!--            删除添加按钮-->
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
+                <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+                <button class="layui-btn layuiadmin-btn-list" data-type="update">编辑</button>
+            </div>
+<!--            数据表格，table的定义在json/modules/contlist.js文件中-->
+            <table id="LAY-roomManage-room" lay-filter="LAY-roomManage-room"></table>
+        </div>
+    </div>
+</div>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'contlist', 'table'], function(){
+        var table = layui.table
+            ,form = layui.form;
+
+        //监听搜索
+        form.on('submit(LAY-app-contlist-search)', function(data){
+            var field = data.field;
+            //执行重载
+            var floor=field.roomfloor,
+                id=field.roomid,
+                type=field.room_type,
+                status=field.room_status,
+                clean=field.room_is_clean,
+                window=field.room_window
+
+            var index=layer.msg('查询中，请稍等...',{icon:16,time:false,shade:0});
+                table.reload('LAY-roomManage-room', {
+                    url:'search'
+                    ,method:'POST'
+                    ,where: {
+                        id:id,
+                        type:type,
+                        clean:clean,
+                        window:window,
+                        status:status,
+                        floor:floor
+                    }
+                });
+                layer.close(index);
+        });
+
+        var $ = layui.$, active = {
+            batchdel: function(){
+                var checkStatus = table.checkStatus('LAY-roomManage-room')
+                    ,checkData = checkStatus.data; //得到选中的数据
+
+                if(checkData.length === 0){
+                    return layer.msg('请选择数据');
+                }
+
+                layer.confirm('确定删除吗？', function(index) {
+                    for(var i=0;i<checkData.length;i++)
+                    {
+                        var id=checkData[i].room_id;
+                        $.ajax({
+                            type: "POST",
+                            url: "delete",
+                            data: {
+                                room_id:id,
+                            },
+                            success: function (result) {
+                                console.log(result);
+                                if (result == "success") {
+                                    layer.msg("删除成功！")
+                                } else {
+                                    layer.msg("删除失败");
+                                }
+                            }
+                        });
+                    }
+                    layer.close(index);
+                    setTimeout(function(){
+                        table.reload('LAY-roomManage-room', {
+                            url:'search/list'
+                            ,method:'GET'
+                        });
+                    },200)
+                });
+            },
+            add: function(){
+                layer.open({
+                    type: 2
+                    ,title: '添加客房'
+                    ,content: '/roomManage/edit'
+                    ,maxmin: true
+                    ,area: ['550px', '550px']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        //点击确认触发 iframe 内容中的按钮提交
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'layuiadmin-app-form-submit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID + ')',function(data)
+                        {
+                            var field=data.field;
+                            console.log(field);
+                            var id=field.room_id,
+                                type=field.room_type,
+                                occupancy=field.room_occupancy,
+                                status=field.room_status,
+                                floor=field.room_floor,
+                                price=field.room_price,
+                                clean=field.room_is_clean,
+                                window=field.room_window
+
+                            $.ajax({
+                                type: "POST",
+                                url: "add",
+                                data: {
+                                    id:id,
+                                    floor:floor,
+                                    window:window,
+                                    clean:clean,
+                                    type:type,
+                                    status:status,
+                                    price:price,
+                                    occupancy:occupancy
+                                },
+                                success: function(result){
+                                    console.log(result);
+                                    if (result == "success") {
+                                        layer.msg("添加成功！")
+                                    } else {
+                                        layer.msg("添加失败");
+                                    }
+                                }
+                            });
+
+                            layer.close(index); //关闭弹层
+                            setTimeout(function(){
+                                table.reload('LAY-roomManage-room', {
+                                    url:'search/list'
+                                    ,method:'GET'
+                                });
+                            },200)
+                        });
+                        submit.click();
+                    }
+                });
+            },
+            update: function(){
+                layer.open({
+                    type: 2
+                    ,title: '编辑'
+                    ,content: '/roomManage/edit'
+                    ,maxmin: true
+                    ,area: ['550px', '550px']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        //点击确认触发 iframe 内容中的按钮提交
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'layuiadmin-app-form-submit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID + ')',function(data)
+                        {
+                            var field=data.field;
+                            console.log(field);
+                            var id=field.room_id,
+                                type=field.room_type,
+                                occupancy=field.room_occupancy,
+                                status=field.room_status,
+                                floor=field.room_floor,
+                                price=field.room_price,
+                                clean=field.room_is_clean,
+                                window=field.room_window
+                            var msg;
+
+                            $.ajax({
+                                type: "POST",
+                                url: "update",
+                                data: {
+                                    id:id,
+                                    floor:floor,
+                                    window:window,
+                                    clean:clean,
+                                    type:type,
+                                    status:status,
+                                    price:price,
+                                    occupancy:occupancy
+                                },
+                                success: function(result){
+                                    console.log(result);
+                                    if (result == "success") {
+                                        layer.msg("修改成功！")
+                                    } else {
+                                        layer.msg("修改失败");
+                                    }
+                                }
+                            });
+
+                            layer.close(index); //关闭弹层
+                            setTimeout(function(){
+                                table.reload('LAY-roomManage-room', {
+                                    url:'search/list'
+                                    ,method:'GET'
+                                });
+                            },200)
+                        });
+                        submit.click();
+                    }
+                });
+            }
+        }
+
+        $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    });
+</script>
+</body>
+</html>

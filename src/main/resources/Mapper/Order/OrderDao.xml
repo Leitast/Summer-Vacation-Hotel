@@ -12,4 +12,29 @@
 
     </insert>
 
+    <select id="second" resultType="cug.se.leitast.comproj.Entity.BackOrderEntity">
+
+        SELECT `ordernum`, `contact_name`, `card`, `phone`, `entertime`, `leavetime` FROM testuser.`Order`
+
+    </select>
+
+    <select id="search" parameterType="java.lang.String" resultType="cug.se.leitast.comproj.Entity.BackOrderEntity">
+
+        select `ordernum`, `contact_name`, `card`, `phone`, `entertime`, `leavetime` FROM testuser.`Order` WHERE `phone` = #{phone}
+
+    </select>
+
+    <delete id="delete_order" parameterType="java.lang.String">
+
+                DELETE FROM testuser.Order WHERE `ordernum` = #{ordernum}
+
+    </delete>
+
+<!--    <delete id="delete_order" parameterType="java.lang.String">-->
+
+<!--        DELETE FROM testuser.Order WHERE `ordernum` = #{ordernum}-->
+
+<!--    </delete>-->
+
+
 </mapper>

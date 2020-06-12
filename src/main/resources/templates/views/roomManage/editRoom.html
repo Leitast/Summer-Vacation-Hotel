@@ -1,0 +1,116 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>编辑客房</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script type="text/javascript" src="../../bt/js/jquery.js"></script>
+    <script type="text/javascript" src="../../bt/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+<!--    填写房间号-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="room_id" lay-verify="required" placeholder="请输入房间号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    房间类型选择-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间类型</label>
+        <div class="layui-input-inline">
+            <select name="room_type" lay-verify="required">
+                <option value="">请选择房间类型</option>
+                <option value="单人间">单人间</option>
+                <option value="标间">标间</option>
+                <option value="大床房">大床房</option>
+                <option value="商务间">商务间</option>
+                <option value="总统套房">总统套房</option>
+            </select>
+        </div>
+    </div>
+<!--    填写房间楼层-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="room_floor" lay-verify="required" placeholder="请输入房间楼层" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    选择房间状态：空闲，已预订，入住-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间状态</label>
+        <div class="layui-input-inline">
+            <select name="room_status" lay-verify="required">
+                <option value="">请选择房间状态</option>
+                <option value="空闲">空闲</option>
+                <option value="已预订">已预订</option>
+                <option value="入住中">入住中</option>
+            </select>
+        </div>
+    </div>
+<!--    房间是否有窗户-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间窗户</label>
+        <div class="layui-input-inline">
+            <select name="room_window" lay-verify="required">
+                <option value="">房间是否有窗</option>
+                <option value="否">是</option>
+                <option value="是">否</option>
+            </select>
+        </div>
+    </div>
+<!--    房间限住人数-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">限住人数</label>
+        <div class="layui-input-inline">
+            <select name="room_occupancy" lay-verify="required">
+                <option value="">请选择房间限住人数</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </div>
+<!--    房间价格-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间价格</label>
+        <div class="layui-input-inline">
+            <input type="text" name="room_price" lay-verify="required" placeholder="请输入房间价格" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    房间是否打扫-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">房间是否打扫</label>
+        <div class="layui-input-inline">
+            <select name="room_is_clean" lay-verify="required">
+                <option value="">房间是否打扫</option>
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <input class="layui-btn layuiadmin-btn-list" type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit" value="确认" style="display: none;">
+    </div>
+</div>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form'], function(){
+        var $ = layui.$
+            ,form = layui.form;
+    })
+</script>
+</body>
+</html>

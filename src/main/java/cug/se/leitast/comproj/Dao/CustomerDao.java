@@ -1,5 +1,6 @@
 package cug.se.leitast.comproj.Dao;
 
+import cug.se.leitast.comproj.Entity.BackCustomerEntity;
 import cug.se.leitast.comproj.Entity.CustomerEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +24,10 @@ public interface CustomerDao {
 
     //修改密码
     public void forget(CustomerEntity customerentity);
+
+    //用户管理全部
+    public List<BackCustomerEntity> searchall();
+
+    //用户管理部分
+    public List<BackCustomerEntity> search(@Param("username") String username);
 }

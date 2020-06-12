@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cug.se.leitast.comproj.Dao.StaffDao">
+
+    <insert id="insert_staff" parameterType="cug.se.leitast.comproj.Entity.StaffEntity">
+
+        INSERT INTO `testuser`.`staff` ( `staff_id`, `staff_name`, `staff_age`, `staff_position`, `staff_salary`, `staff_phone` )
+        VALUES
+	    ( #{staff_id},#{staff_name},#{staff_age},#{staff_position},#{staff_salary},#{staff_phone});
+
+
+    </insert>
+
+    <delete id="delete_staff" parameterType="java.lang.String">
+
+        DELETE FROM testuser.staff WHERE staff_id = #{id}
+
+    </delete>
+
+    <select id="search" resultType="cug.se.leitast.comproj.Entity.StaffEntity" parameterType="java.util.Map">
+
+        SELECT * FROM testuser.staff
+
+    </select>
+
+    <update id="update_staff" parameterType="cug.se.leitast.comproj.Entity.StaffEntity">
+
+        UPDATE `testuser`.`staff`
+            SET `staff_name` = #{staff_name},
+                `staff_age` = #{staff_age},
+                `staff_position` = #{staff_position},
+                `staff_salary` = #{staff_salary},
+                `staff_phone` = #{staff_phone}
+            WHERE
+	            `staff_id` = #{staff_id};
+
+    </update>
+
+
+</mapper>

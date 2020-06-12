@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>员工管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script type="text/javascript" src="../../bt/js/jquery.js"></script>
+    <script type="text/javascript" src="../../bt/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+<!--                查询按钮，需要实现功能-->
+
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>
+                <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>
+                <button class="layui-btn layuiadmin-btn-admin" data-type="update">编辑</button>
+            </div>
+<!--            table定义在json/modules/useradmin.js中-->
+            <table id="LAY-staffManage-staff" lay-filter="LAY-staffManage-staff"></table>
+        </div>
+    </div>
+</div>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+
+    // function addinfo(staff_id, staff_name, staff_age, staff_position, staff_salary, staff_phone){
+    //     console.log("进入POST")
+    //     var user = {
+    //         "staff_id": staff_id
+    //         ,"staff_name": staff_name
+    //         ,"staff_age": staff_age
+    //         ,"staff_position": staff_position
+    //         ,"staff_salary": staff_salary
+    //         ,"staff_phone": staff_phone
+    //     }
+    //
+    //     var userJson = JSON.stringify(user)
+    //     console.log(userJson)
+    //     $.post({
+    //         url:'add',
+    //         data:userJson,
+    //         contentType:'application/json',
+    //         success:function(data){
+    //             layer.msg("添加成功！")
+    //         }
+    //     })
+    // }
+
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'useradmin', 'table'], function() {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table;
+
+        //监听搜索
+        form.on('submit(LAY-user-back-search)', function (data) {
+            var field = data.field;
+
+            //执行重载
+            table.reload('LAY-staffManage-staff', {
+                where: field
+            });
+        });
+
+        //事件
+        var active = {
+                batchdel: function () {
+                    var checkStatus = table.checkStatus('LAY-staffManage-staff')
+                        , checkData = checkStatus.data; //得到选中的数据
+
+                    if (checkData.length === 0) {
+                        return layer.msg('请选择数据');
+                    }
+
+
+                    layer.confirm('确定删除吗？', function (index) {
+                        for (var i = 0; i < checkData.length; i++) {
+                            var id = checkData[i].staff_id;
+                            $.ajax({
+                                type: "POST",
+                                url: "delete",
+                                data: {
+                                    staff_id: id,
+                                },
+                                success: function (result) {
+                                    layer.msg("删除成功!");
+                                }
+                            });
+                        }
+                        table.reload('LAY-staffManage-staff');
+                    });
+                }
+
+                , add: function () {
+                    layer.open({
+                        type: 2
+                        , title: '添加员工信息'
+                        , content: '/staffManage/edit'
+                        , area: ['420px', '420px']
+                        , btn: ['确定', '取消']
+                        , yes: function (index, layero) {
+                            var iframeWindow = window['layui-layer-iframe' + index]
+                                , submitID = 'layuiadmin-app-form-submit'
+                                , submit = layero.find('iframe').contents().find('#' + submitID);
+
+                            //监听提交
+                            iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+                                var field = data.field;
+                                var id = field.staff_id,
+                                    age = field.staff_age,
+                                    name = field.staff_name,
+                                    position = field.staff_position,
+                                    salary = field.staff_salary,
+                                    phone = field.staff_phone;
+
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "add",
+                                    data: {
+                                        staff_id: id,
+                                        staff_name: name,
+                                        staff_age: age,
+                                        staff_position: position,
+                                        staff_salary: salary,
+                                        staff_phone: phone
+                                    },
+                                    success: function (result) {
+                                        console.log(result);
+                                        if (result == "success") {
+                                            layer.msg("添加成功！")
+                                            layer.close(index);
+                                        } else {
+                                            layer.msg("添加失败");
+                                            layer.close(index);
+                                        }
+                                    }
+                                });
+                                layer.close(index); //关闭弹层
+                                table.reload('LAY-staffManage-staff'); //数据刷新
+                            });
+
+                            submit.trigger('click');
+                        }
+                    });
+
+            },
+            update:function () {
+            layer.open({
+                type: 2
+                , title: '修改员工信息'
+                , content: '/staffManage/edit'
+                , area: ['420px', '420px']
+                , btn: ['确定', '取消']
+                , yes: function (index, layero) {
+                    var iframeWindow = window['layui-layer-iframe' + index]
+                        , submitID = 'layuiadmin-app-form-submit'
+                        , submit = layero.find('iframe').contents().find('#' + submitID);
+
+                    //监听提交
+                    iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+                        var field = data.field;
+                        var id = field.staff_id,
+                            age = field.staff_age,
+                            name = field.staff_name,
+                            position = field.staff_position,
+                            salary = field.staff_salary,
+                            phone = field.staff_phone;
+                        $.ajax({
+                            type: "POST",
+                            url: "update",
+                            data: {
+                                staff_id: id,
+                                staff_name: name,
+                                staff_age: age,
+                                staff_position: position,
+                                staff_salary: salary,
+                                staff_phone: phone
+                            },
+                            success: function (result) {
+                                if (result == "success") {
+                                    layer.msg("修改成功！")
+                                    layer.close(index);
+                                } else {
+                                    layer.msg("修改失败");
+                                    layer.close(index);
+                                }
+                            }
+                        });
+                        layer.close(index); //关闭弹层
+                        table.reload('LAY-staffManage-staff');
+                    });
+
+                    submit.trigger('click');
+                }
+            });
+        }
+    }
+        $('.layui-btn.layuiadmin-btn-admin').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>
+

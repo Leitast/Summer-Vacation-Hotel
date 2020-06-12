@@ -67,7 +67,7 @@ public class CustomerController {
 
     @RequestMapping("/Home")
     public String Home(){
-        return "Home";
+        return "home";
     }
 
     @RequestMapping("/forget")

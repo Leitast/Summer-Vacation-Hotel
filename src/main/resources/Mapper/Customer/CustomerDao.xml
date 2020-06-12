@@ -40,4 +40,16 @@
 
 
     </update>
+
+    <select id="searchall" resultType="cug.se.leitast.comproj.Entity.BackCustomerEntity">
+
+        SELECT `username`, `password`, `fullname` FROM testuser.`Customer`
+
+    </select>
+
+    <select id="search" resultType="cug.se.leitast.comproj.Entity.BackCustomerEntity" parameterType="java.lang.String">
+
+        SELECT `username`, `password`, `fullname` FROM testuser.`Customer` WHERE `username` = #{username}
+
+    </select>
 </mapper>

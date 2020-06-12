@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>订单管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script type="text/javascript" src="../../bt/js/jquery.js"></script>
+    <script type="text/javascript" src="../../bt/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+<!--                查询按钮，需要实现功能-->
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="phonenum" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-comm" data-type="reload" lay-submit lay-filter="LAY-app-contcomm-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-comm" data-type="batchdel">删除</button>
+            </div>
+<!--            数据表格，数据表格的定义在json/modules/contlist.js文件中-->
+            <table id="LAY-orderManage-order" lay-filter="LAY-orderManage-order"></table>
+        </div>
+    </div>
+</div>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'contlist', 'table'], function(){
+        var $ = layui.$
+            ,form = layui.form
+            ,table = layui.table;
+        console.log("进入")
+        //执行重载
+
+        //监听搜索
+        form.on('submit(LAY-app-contcomm-search)', function(data){
+            var field = data.field;
+            var phonenum=field.phonenum;
+            //执行重载
+            var index=layer.msg('查询中，请稍等...',{icon:16,time:false,shade:0});
+            if(phonenum!=""){
+                setTimeout(function () {
+                    table.reload('LAY-orderManage-order', {
+                        url: 'search'
+                        , method: 'POST'
+                        , where: {
+                            phonenum: phonenum
+                        }
+                    });
+                }, 800)
+            }else {
+                setTimeout(function () {
+                    table.reload('LAY-orderManage-order', {
+                        url: 'search/list'
+                        , method: 'GET'
+                        , where: {
+                            page: 0,
+                            limit: 0
+                        }
+                    });
+                }, 800)
+                // }
+            }
+            layer.close(index);
+        });
+
+        //点击事件
+        var active = {
+            batchdel: function(){
+                var checkStatus = table.checkStatus('LAY-orderManage-order')
+                    ,checkData = checkStatus.data; //得到选中的数据
+
+                if(checkData.length === 0){
+                    return layer.msg('请选择数据');
+                }
+
+                layer.confirm('确定删除吗？', function(index) {
+                    var msg;
+                    for(var i=0;i<checkData.length;i++)
+                    {
+                        var ordernum=checkData[i].ordernum;
+                        $.ajax({
+                            type: "POST",
+                            url: "delete",
+                            data: {
+                                ordernum:ordernum,
+                            },
+                            success: function(result){
+                                console.log(result);
+                                if (result == "success") {
+                                    layer.msg("删除成功！")
+                                } else {
+                                    layer.msg("删除失败");
+                                }
+                            }
+                        });
+                    }
+                    layer.close(index);
+                    setTimeout(function(){
+                        table.reload('LAY-orderManage-order', {
+                            url:'search/list'
+                            ,method:'GET'
+                        });
+                    },200)
+                });
+            }
+        }
+
+        $('.layui-btn.layuiadmin-btn-comm').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>
+

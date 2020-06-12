@@ -1,5 +1,6 @@
 package cug.se.leitast.comproj.Service;
 
+import cug.se.leitast.comproj.Entity.BackCustomerEntity;
 import cug.se.leitast.comproj.Entity.CustomerEntity;
 
 import java.util.List;
@@ -20,5 +21,11 @@ public interface CustomerService {
 
     //修改密码
     public void forget(CustomerEntity customerentity);
+
+    //用户管理所有
+    public List<BackCustomerEntity> searchall();
+
+    //用户管理部分
+    public List<BackCustomerEntity> search(String username);
 
 }

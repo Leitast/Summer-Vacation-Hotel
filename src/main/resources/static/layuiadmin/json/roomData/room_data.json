@@ -9,7 +9,7 @@
 ,"room_status": "空闲"
 ,"room_window": "有"
 ,"room_occupancy": "1"
-,"price": "159"
+,"room_price": 159
 ,"room_is_clean":"是"
 },{
   "room_id": "1002"
@@ -18,7 +18,7 @@
 ,"room_status": "空闲"
 ,"room_window": "有"
 ,"room_occupancy": "2"
-,"price": "199"
+,"room_price": 199
 ,"room_is_clean":"是"
 },{
   "room_id": "1003"
@@ -27,7 +27,8 @@
 ,"room_status": "空闲"
 ,"room_window": "有"
 ,"room_occupancy": "2"
-,"price": "259"
+,"room_price": 259
 ,"room_is_clean":"是"
 }]
 }
+

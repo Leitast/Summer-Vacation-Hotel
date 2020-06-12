@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>编辑员工</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<form class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin" style="padding: 20px 30px 0 0;">
+<!--    员工工号-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工工号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="staff_id" id="staff_id" lay-verify="required" placeholder="请输入员工工号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    员工姓名-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="staff_name" id="staff_name" lay-verify="required" placeholder="请输入员工姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    员工年龄-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工年龄</label>
+        <div class="layui-input-inline">
+            <input type="text" name="staff_age" id="staff_year" lay-verify="required" placeholder="请输入员工年龄" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    员工职位-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工职位</label>
+        <div class="layui-input-inline">
+            <select id="staff_position" name="staff_position"  lay-verify="required">
+                <option value="前台">前台</option>
+                <option value="客服">客服</option>
+                <option value="清洁">清洁</option>
+                <option value="厨师">厨师</option>
+                <option value="经理">经理</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+    </div>
+<!--    员工工资-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工工资</label>
+        <div class="layui-input-inline">
+            <input type="text" lay-verify="required" name="staff_salary" id="staff_salary" placeholder="请输入员工工资" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<!--    员工手机号-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工手机号</label>
+        <div class="layui-input-inline">
+            <input type="text" lay-verify="required" id="staff_phone" name="staff_phone" placeholder="请输入员工手机号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <input class="layui-btn layuiadmin-btn-list" type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit" value="确认" style="display: none;">
+    </div>
+
+</form>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form'], function(){
+        var $ = layui.$
+            ,form = layui.form ;
+    })
+</script>
+</body>
+</html>

@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.98.48.40:3306/testuser?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/testuser?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: 123456
+    password: root
 mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
+  mapper-locations: classpath:Mapper/**/*.xml

@@ -5,14 +5,14 @@
 ,"data": [{
   "staff_id": "0001"
 ,"staff_name": "朱俊杰"
-,"staff_year": "20"
+,"staff_age": "20"
 ,"staff_position": "前台"
 ,"staff_salary": "3000"
 ,"staff_phone": "123456789"
 },{
   "staff_id": "0002"
 ,"staff_name": "王瑞凡"
-,"staff_year": "20"
+,"staff_age": "20"
 ,"staff_position": "前台"
 ,"staff_salary": "3000"
 ,"staff_phone": "123456789"
